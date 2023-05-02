@@ -14,11 +14,15 @@ const Banner = () => {
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">CHINESE FOOD</h1>
             <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+               Ni
+              Hao! Welcome to our vibrant online platform celebrating the rich
+              tapestry of Chinese cuisine. With an exquisite blend of tradition
+              and innovation, our culinary experts bring you an authentic taste
+              of China right at your fingertips.
             </p>
-            <button className="btn btn-error w-28 text-white bg-inherit me-2">More</button>
+            <button className="btn btn-error w-28 text-white bg-inherit me-2">
+              More
+            </button>
             <button className="btn btn-error w-28 text-white bg-inherit ">
               About
             </button>
