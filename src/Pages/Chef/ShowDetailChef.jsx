@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ShowDetailChef = ({chef}) => {
-    const { chefName, yearsOfExperience, numOfRecipes, likes, chefPicture } =
+    const { chefName, yearsOfExperience, numOfRecipes, likes, chefPicture, chefId } =
       chef;
+     
     return (
       <div className="card glass">
         <figure>
@@ -21,7 +23,7 @@ const ShowDetailChef = ({chef}) => {
           <p>
             <small> Number of Recipes: {numOfRecipes}</small>
           </p>
-          <p className='flex gap-2'>
+          <p className="flex gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -39,9 +41,11 @@ const ShowDetailChef = ({chef}) => {
             <span>Likes: {likes}</span>
           </p>
           <div className="card-actions justify-end">
-            <button className="btn btn-error border-2 hover:text-white  bg-inherit ">
-              View Recipes
-            </button>
+            <Link to={`/chefs/${chefId}`}>
+              <button className="btn btn-error border-2 hover:text-white  bg-inherit ">
+                View Recipes
+              </button>
+            </Link>
           </div>
         </div>
       </div>

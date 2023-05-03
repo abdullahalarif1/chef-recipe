@@ -11,7 +11,7 @@ const Chef = () => {
   }, []);
   return (
     <div className="md:p-12">
-      <h1 className="text-center text-3xl font-bold pt-5 pb-2 text-[[#33373e]">
+      <h1 className="text-center text-3xl font-bold pt-5 pb-2 text-[#33373e]">
         OUR EXPERT <span className="text-error"> CHEFS</span>
       </h1>
       <p className="text-center pb-5 px-2 md:px-32">
