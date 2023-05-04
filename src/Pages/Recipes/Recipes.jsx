@@ -8,7 +8,7 @@ const Recipes = () => {
   const { loading } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/team")
+    fetch("https://assignment-10-server-alrabzil0-gmailcom.vercel.app/team")
       .then((res) => res.json())
       .then((data) => setData(data.team));
   }, []);
@@ -18,7 +18,7 @@ const Recipes = () => {
         <Spinner></Spinner>
       ) : (
         <div className="hero min-h-screen bg-base-200 md:px-12">
-          <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="hero-content  flex-col-reverse lg:flex-row-reverse">
             {data.map((team) => (
               <div className="text-center ">
                 <img

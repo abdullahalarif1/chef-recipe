@@ -6,6 +6,6 @@
 2. Big Big Company are order from here .
 3. company: google, netflix, tesla etc
 
-[Cuisine Qi]()
+[Cuisine Qi](https://assignment-10-4ffb3.web.app/)
 
-()
+(https://assignment-10-4ffb3.web.app/)

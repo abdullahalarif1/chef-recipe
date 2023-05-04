@@ -5,7 +5,7 @@ import ShowDetailChef from "./ShowDetailChef";
 const Chef = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch("https://assignment-10-server-alrabzil0-gmailcom.vercel.app/chef")
       .then((res) => res.json())
       .then((data) => setData(data.chefs));
   }, []);

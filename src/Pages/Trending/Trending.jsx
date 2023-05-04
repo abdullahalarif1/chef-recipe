@@ -7,7 +7,9 @@ const Trending = () => {
  const { loading } = useContext(AuthContext);
 
      useEffect(() => {
-       fetch("http://localhost:5000/trending")
+       fetch(
+         "https://assignment-10-server-alrabzil0-gmailcom.vercel.app/trending"
+       )
          .then((res) => res.json())
          .then((data) => setData(data.trending));
      }, []);

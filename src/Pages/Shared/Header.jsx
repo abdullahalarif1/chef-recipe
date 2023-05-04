@@ -49,7 +49,9 @@ const Header = () => {
             </IsActive>
             <hr />
             {user ? (
-              <NavLink className="ps-5 py-2">Logout</NavLink>
+              <NavLink onClick={handleLogout} className="ps-5 py-2">
+                Logout
+              </NavLink>
             ) : (
               <IsActive className="ps-5 py-2" to="/login">
                 Login
@@ -64,14 +66,16 @@ const Header = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <IsActive className="pe-5" to="/" >
+          <IsActive className="pe-5" to="/">
             Home
           </IsActive>
-          <IsActive className="pe-5" to="/blog" >
+          <IsActive className="pe-5" to="/blog">
             Blog
           </IsActive>
           {user ? (
-            <NavLink className='ps-5'  onClick={handleLogout}>Logout</NavLink>
+            <NavLink className="ps-5" onClick={handleLogout}>
+              Logout
+            </NavLink>
           ) : (
             <IsActive to="/login">Login</IsActive>
           )}
