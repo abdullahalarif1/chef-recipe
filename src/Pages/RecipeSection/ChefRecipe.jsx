@@ -20,15 +20,15 @@ const ChefRecipe = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="md:px-12">
       <table className="my-10">
         <thead>
           <tr className="border-2">
-            <th className="border-2">Recipe Name</th>
-            <th className="border-2">Ingredients</th>
-            <th className="border-2">Cooking Method</th>
-            <th className="border-2">Rating</th>
-            <th className="border-2">Favorite</th>
+            <th className="border-2 bg-stone-100">Recipe Name</th>
+            <th className="border-2 bg-stone-100">Ingredients</th>
+            <th className="border-2 bg-stone-100">Cooking Method</th>
+            <th className="border-2 bg-stone-100">Rating</th>
+            <th className="border-2 bg-stone-100">Favorite</th>
           </tr>
         </thead>
         <tbody>

@@ -7,16 +7,15 @@ const ViewRecipies = () => {
   const data = useLoaderData();
   console.log(data);
   return (
-    <>
-      <Banner></Banner>
-      <div className="text-center p-12 flex flex-col justify-center items-center">
-        <img src={data.chefPicture} className="w-96 rounded-3xl" alt="" />
+    <div className=" text-center px-2 md:px-0">
+      <div className=" py-10 flex flex-col justify-center items-center bg-[#33373e] text-white border-b-2 border-error">
+        <img src={data.chefPicture} className="w-96 border-error border rounded-3xl" alt="" />
         <h1 className="text-3xl py-3 font-semibold ">{data.chefName}</h1>
-        <p className="md:px-44">
+        <p className="pb-2 md:px-44">
           <small>{data.bio}</small>
         </p>
         <p> Years of Experience: {data.yearsOfExperience}</p>
-        <p>Number of Recipes: {data.numOfRecipes}</p>
+        <p className="py-1">Number of Recipes: {data.numOfRecipes}</p>
         <p className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,9 +33,9 @@ const ViewRecipies = () => {
           </svg>
           <span>Likes: {data.likes}</span>
         </p>
-        <ChefRecipe data={data}></ChefRecipe>
       </div>
-    </>
+      <ChefRecipe data={data}></ChefRecipe>
+    </div>
   );
 };
 

@@ -3,7 +3,13 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
+
+    const handleLogout = () => {
+      logOut()
+      .then()
+      .catch(error => console.error(error))
+    }
   return (
     <div className="navbar md:px-12 bg-[#33373e] border-b border-error text-white">
       <div className="navbar-start">
@@ -36,9 +42,13 @@ const Header = () => {
               Blog
             </NavLink>
             <hr />
-            <NavLink className="ps-5 py-2" to="/login">
-              Login
-            </NavLink>
+            {user ? (
+              <NavLink className="ps-5 py-2">Logout</NavLink>
+            ) : (
+              <NavLink className="ps-5 py-2" to="/login">
+                Login
+              </NavLink>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">
@@ -68,7 +78,7 @@ const Header = () => {
             Blog
           </NavLink>
           {user ? (
-            <NavLink >Logout</NavLink>
+            <NavLink onClick={handleLogout}>Logout</NavLink>
           ) : (
             <NavLink to="/login">Login</NavLink>
           )}
@@ -77,8 +87,8 @@ const Header = () => {
       <div className="navbar-end">
         {user && (
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <div className={`w-10 rounded-full`}>
+              <img src={user.photoURL} />
             </div>
           </label>
         )}

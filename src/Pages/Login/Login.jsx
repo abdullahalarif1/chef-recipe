@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import GoogleGit from "../Shared/GoogleGit";
@@ -8,6 +8,9 @@ const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +27,8 @@ const Login = () => {
         setSuccess(loggedUser);
         e.target.reset();
         toast("Successfully logged in!");
+        setSuccess("User logged in successfully!!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -82,6 +87,7 @@ const Login = () => {
           </div>
 
           <p className="text-error">{error}</p>
+          <p className="text-success">{success}</p>
 
           <div className="flex items-center w-full my-4">
             <hr className="w-full" />
