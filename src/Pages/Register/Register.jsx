@@ -5,22 +5,23 @@ import { getAuth, updateProfile } from "firebase/auth";
 import app from "../../Firebase/Firebase.config";
 import GoogleGit from "../Shared/GoogleGit";
 
-const auth = getAuth(app)
+const auth = getAuth(app);
 const Register = () => {
   const { createUser } = useContext(AuthContext);
-  
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photoURL = e.target.photo.value;
     console.log(name, email, password, photoURL);
-    setError("");
-    setSuccess("");
+
     //validation
     if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
       setError(
@@ -37,26 +38,27 @@ const Register = () => {
         console.log(createdUser);
         setSuccess("user created successfully!!");
         e.target.reset();
-        updateUser(result.user, name, photoURL)
+
+        updateUser(result.user, name, photoURL);
       })
       .catch((error) => {
         console.log(error.message);
         setError(error.message);
       });
 
-      //update user
-       const updateUser = (user, name, photoURL) => {
-        updateProfile(user, {
-            displayName: name,
-            photoURL: photoURL
-        })
+    //update user
+    const updateUser = (user, name, photoURL) => {
+      updateProfile(user, {
+        displayName: name,
+        photoURL: photoURL,
+      })
         .then(() => {
-            console.log('user updated');
+          console.log("user updated");
         })
-        .catch(error => {
-            setError(error.message)
-        })
-       }
+        .catch((error) => {
+          setError(error.message);
+        });
+    };
   };
   return (
     <div className=" p-12">
@@ -74,6 +76,7 @@ const Register = () => {
                   placeholder="Name"
                   type="text"
                   name="name"
+                  required
                   className="block hover:pl-2 w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -84,6 +87,7 @@ const Register = () => {
                   placeholder="Email"
                   type="email"
                   name="email"
+                  required
                   className="block hover:pl-2 w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -94,6 +98,7 @@ const Register = () => {
                   placeholder="Password"
                   type="password"
                   name="password"
+                  required
                   className="block hover:pl-2 w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -104,6 +109,7 @@ const Register = () => {
                   placeholder="Photo Url"
                   type="text"
                   name="photo"
+                  required
                   className="block hover:pl-2 w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -131,7 +137,7 @@ const Register = () => {
             <p className="px-3 ">OR</p>
             <hr className="w-full" />
           </div>
-         <GoogleGit></GoogleGit>
+          <GoogleGit></GoogleGit>
         </div>
       </div>
     </div>

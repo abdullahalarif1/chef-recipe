@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import IsActive from "./IsActive";
 
 const Header = () => {
     const {user, logOut} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [isHovered , setIsHovered] = useState(false)
 
     const handleLogout = () => {
       logOut()
-      .then()
+      .then(result => {
+        navigate('/login')
+      })
       .catch(error => console.error(error))
     }
   return (
@@ -34,20 +39,20 @@ const Header = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#33373e] rounded-box w-52 "
           >
-            <NavLink className="ps-5 py-2 " to="/">
+            <IsActive className="ps-5 py-2 " to="/">
               Home
-            </NavLink>
+            </IsActive>
             <hr />
-            <NavLink className="ps-5 py-2" to="/blog">
+            <IsActive className="ps-5 py-2" to="/blog">
               Blog
-            </NavLink>
+            </IsActive>
             <hr />
             {user ? (
-              <NavLink className="ps-5 py-2">Logout</NavLink>
+              <IsActive className="ps-5 py-2">Logout</IsActive>
             ) : (
-              <NavLink className="ps-5 py-2" to="/login">
+              <IsActive className="ps-5 py-2" to="/login">
                 Login
-              </NavLink>
+              </IsActive>
             )}
           </ul>
         </div>
@@ -71,26 +76,43 @@ const Header = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <NavLink className="pe-5" to="/">
+          <IsActive className="pe-5" to="/" >
             Home
-          </NavLink>
-          <NavLink className="pe-5" to="/blog">
+          </IsActive>
+          <IsActive className="pe-5" to="/blog" >
             Blog
-          </NavLink>
+          </IsActive>
           {user ? (
-            <NavLink onClick={handleLogout}>Logout</NavLink>
+            <IsActive  onClick={handleLogout}>Logout</IsActive>
           ) : (
-            <NavLink to="/login">Login</NavLink>
+            <IsActive to="/login">Login</IsActive>
           )}
         </ul>
       </div>
       <div className="navbar-end">
-        {user && (
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className={`w-10 rounded-full`}>
-              <img src={user.photoURL} />
-            </div>
-          </label>
+        {user ? (
+          <>
+            {" "}
+            {isHovered && <span>{user.displayName}</span>}
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar ms-3"
+            >
+              <div
+                onMouseEnter={() => setIsHovered(true)}
+                className={`w-10 rounded-full`}
+              >
+                <img src={user.photoURL} />
+              </div>
+            </label>
+          </>
+        ) : (
+          <IsActive
+            className="btn btn-error bg-inherit  w-28 text-white"
+            to="/login"
+          >
+            Login
+          </IsActive>
         )}
       </div>
     </div>

@@ -1,46 +1,36 @@
-import {
-  GithubAuthProvider,
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-} from "firebase/auth";
-import React, { useState } from "react";
-import app from "../../Firebase/Firebase.config";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const GoogleGit = () => {
-  const [user, setUser] = useState(null);
-
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
+  const navigate = useNavigate();
+  const { googleSignIn, githubSignIn } = useContext(AuthContext);
 
   // handle google sign in
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
+    googleSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setUser(user);
+        navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
-        setUser(errorMessage);
       });
   };
 
   // handle github sign in
   const handleGithubSignIn = () => {
-    signInWithPopup(auth, githubProvider)
+    githubSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setUser(user);
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
-        setUser(errorMessage);
       });
   };
 
